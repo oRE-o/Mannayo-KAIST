@@ -9,6 +9,10 @@ body {
     width: auto;
     margin-bottom: 200px;
 }
+.space-300px{
+    width: auto;
+    margin-bottom: 300px;
+}
 
 .title {
     margin-left: 100px;
