@@ -4,6 +4,20 @@
 body {
     background-color: rgb(240, 243, 247);
 }
+.space-15px{
+    width: auto;
+    margin-bottom: 15px;
+}
+
+.space-50px{
+    width: auto;
+    margin-bottom: 50px;
+}
+
+.space-100px{
+    width: auto;
+    margin-bottom: 100px;
+}
 
 .space-200px{
     width: auto;
@@ -31,4 +45,12 @@ body {
     font-weight: 600;
     letter-spacing: -0.5px;
 
+}
+
+.small-title {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 14px;
+    font-weight: 4s00;
+    letter-spacing: 5px;
+    margin-bottom: 7px;
 }
