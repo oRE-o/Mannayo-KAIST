@@ -1,23 +1,27 @@
 import './App.css';
 import './reset.css';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
+import HomePage from './pages/home.js';
+import Dashboard from './pages/dashboard.js';
+import FindPage from './pages/find.js';
+import LoginPage from './pages/login.js';
+import PageNotFound from './pages/notfound.js';
+import ProfilePage from './pages/profile.js';
+import SignupPage from './pages/signup.js';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
-    <>
-    <Header />
-    <div className='main-title'>
-      <div className='space-200px'></div>
-      <div className='title'>Enjoying Involved,</div>
-      <div className='title'>ManNayo!</div>
-      <div className='space-10px'></div>
-      <div className='subtitle'>꿈꾸던 만남의 장소는 이미 이 곳에.</div>
-      <div className='subtitle'>숨겨진 KAISTian들을 이어주는, 만나요 프로젝트입니다.</div>
-    </div>
-    <div className='space-300px'></div>
-    <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={ <HomePage/> }/>
+          <Route path="/dashboard" element={ <Dashboard/> }/>
+          <Route path="/find" element={ <FindPage/> }/>
+          <Route path="/login" element={ <LoginPage/> }/>
+          <Route path="/profile" element={ <ProfilePage/> }/>
+          <Route path="/signup" element={ <SignupPage/> }/>
+          <Route path="*" element={ <PageNotFound/> }/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

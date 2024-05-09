@@ -1,4 +1,4 @@
-const FindPage = () => {
+const SignupPage = () => {
     return (
         <>
         
@@ -6,4 +6,4 @@ const FindPage = () => {
     );
 }
 
-export default FindPage;
+export default SignupPage;
