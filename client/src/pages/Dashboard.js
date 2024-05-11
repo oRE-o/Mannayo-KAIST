@@ -24,9 +24,7 @@ const Dashboard = () => {
                     <MeetingCard/>  
                 </div>
             </div>
-            <div className="space-50px"></div>
             <Footer/>
-            <div className="space-50px"></div>
         </>
     );
 }
