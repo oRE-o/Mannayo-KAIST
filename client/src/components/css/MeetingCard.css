@@ -1,10 +1,10 @@
 
 .meeting-card {
-    width: 45%;
-    box-sizing: border-box;
+    width: 47%;
+    box-sizing:border-box;
     padding: 30px 40px;
-    border-radius: 28px;
     background: #6881b4;
+    border-radius: 28px;
     box-shadow:  19px 19px 38px #c5cace;
     margin-bottom: 30px;
     margin-right: 30px;

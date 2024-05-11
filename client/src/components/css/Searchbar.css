@@ -1,0 +1,34 @@
+.searchbar-wrapper {
+    margin-top: 20px;
+}
+
+.search-ex {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.part-title {
+    margin: 10px 0px;
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.datetime-selector {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 5px;
+    border: 0;
+    padding: 10px;
+    border-radius: 28px;
+    background-color: #f2f6f8;
+    box-shadow:  10px 10px 23px #c5cace;
+}
