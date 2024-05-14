@@ -1,0 +1,32 @@
+.profile-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    box-shadow:  19px 19px 38px #c5cace;
+}
+
+.profile-wrapper {
+    display: flex;
+}
+
+.profile-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 65px;
+}
+
+.profile-text {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 2;
+}
+
+.profile-introduce {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 2;
+}

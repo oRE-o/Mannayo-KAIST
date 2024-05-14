@@ -1,7 +1,12 @@
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
 const SignupPage = () => {
     return (
         <>
-            <h2>Signup desu</h2>
+            <Header />
+            
+            <Footer/>
         </>
     );
 }
