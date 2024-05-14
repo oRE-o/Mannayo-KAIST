@@ -43,3 +43,18 @@ input{
     background-color: #c7e2ff;
     font-weight: 600;
 }
+
+.register-ex {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    color: #373737;
+}
+
+.register-ex > a {
+    text-decoration: none;
+    color: #3496ff;
+    font-weight: 600;
+}

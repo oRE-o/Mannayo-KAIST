@@ -8,8 +8,7 @@ const LoginPage = () => {
             <div className="main-content-wrapper">
                 <div className='space-100px'></div>
                 <div className="small-title">LOGIN</div>
-                <div className="greetings">| 로그인하여 새로운 만남에 지금 참여하세요!</div>
-                <div className="greetings">| KAIST 학생 정보로 로그인할 수 있습니다. (예정)</div>
+                <div className="greetings">| 새로운 만남에 지금 참여하세요.</div>    
                 <div className='space-50px'></div>
                 <div  className="login-wrapper">
                     <div className="login-form">
@@ -18,6 +17,7 @@ const LoginPage = () => {
                         <input type="password" name="userPW" placeholder="Password"></input>
                         <div className="space-15px"></div>
                         <input type="submit" value="Login" className="loginbutton"></input>
+                        <div className="register-ex">계정이 없으시다면, <a href="/signup">여기</a>를 눌러 가입할 수 있어요.</div>
                     </div>
                 </div>
                 <div className="space-50px"></div>
