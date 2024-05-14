@@ -17,7 +17,7 @@ const LoginPage = () => {
                         <input type="password" name="userPW" placeholder="Password"></input>
                         <div className="space-15px"></div>
                         <input type="submit" value="Login" className="loginbutton"></input>
-                        <div className="register-ex">계정이 없으시다면, <a href="/signup">여기</a>를 눌러 가입할 수 있어요.</div>
+                        <div className="to-register-ex">계정이 없으시다면, <a href="/signup">여기</a>를 눌러 가입할 수 있어요.</div>
                     </div>
                 </div>
                 <div className="space-50px"></div>

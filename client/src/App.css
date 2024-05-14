@@ -9,6 +9,11 @@ body {
     margin-bottom: 15px;
 }
 
+.space-30px{
+    width: auto;
+    margin-bottom: 30px;
+}
+
 .space-50px{
     width: auto;
     margin-bottom: 50px;
