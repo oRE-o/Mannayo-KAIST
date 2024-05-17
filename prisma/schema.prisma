@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Meeting {
+  meetingID   String   @id @db.VarChar(20)
+  meetingName String   @db.VarChar(100)
+  hostUID     String   @db.VarChar(32)
+  membersUID  String?  @db.VarChar(1000)
+  startTime   DateTime @db.DateTime(0)
+  endTime     DateTime @db.DateTime(0)
+  location    String   @db.VarChar(100)
+  content     String   @db.VarChar(3000)
+  uploadTime  DateTime @db.DateTime(0)
+  User        User     @relation(fields: [hostUID], references: [UID], onDelete: NoAction, onUpdate: NoAction, map: "hostUID")
+
+  @@index([hostUID], map: "hostUID")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model Profile {
+  UID     String  @db.VarChar(32)
+  snsID   String? @db.VarChar(100)
+  content String? @db.VarChar(140)
+  User    User    @relation(fields: [UID], references: [UID], onDelete: NoAction, onUpdate: NoAction, map: "UID")
+
+  @@index([UID], map: "UID")
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model User {
+  UID         String    @id @db.Char(32)
+  userID      String    @db.VarChar(20)
+  encryptedPW String    @db.VarChar(100)
+  stuNumber   String    @db.Char(8)
+  name        String    @db.VarChar(100)
+  Meeting     Meeting[]
+  Profile     Profile[] @ignore
+}
