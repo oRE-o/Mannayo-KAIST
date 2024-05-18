@@ -15,19 +15,27 @@ const SignupPage = () => {
 
     const navigate = useNavigate();
 
+    const isAlphaNumeric = (input) => {
+        return /^[a-zA-Z0-9]+$/.test(input);
+    };
+
     const createNewUser = async () => {
         if ( !ID || !PW || !PWcheck || !stuNum || !name) {
             window.alert('값이 입력되지 않은 곳이 있어요. 모두 입력해주세요.');
             return;
         }
-        else if (stuNum.length !== 8) {
-            window.alert('학번이 너무 짧거나 깁니다.');
+        else if (stuNum.length !== 8 || isNaN(stuNum)) {
+            window.alert('학번이 숫자가 아니거나, 너무 짧거나 길어요.');
             return;
         }
         else if (PW !== PWcheck) {
             window.alert('비밀번호가 서로 달라요. 다시 입력해주세요.');
             setPW('');
             setPWcheck('');
+            return;
+        }
+        else if (!isAlphaNumeric(ID) || ID.length > 20) {
+            window.alert('ID는 알파벳, 영어로만 이루어져야하며, 20자 이내로 작성해주세요.');
             return;
         }
         else {

@@ -12,15 +12,6 @@ const generateUID = () => {
 router.post('/signup', async (req, res) => {
     try {
         const { id, pw, pwcheck, stuNum, name } = req.body;
-
-        if (!id || !pw || !pwcheck || !stuNum || !name) {
-            return res.status(400).json({ error: '값이 모두 입력되지 않았습니다.' });
-        }
-
-        if (pw !== pwcheck) {
-            return res.status(400).json({ error: '비밀번호가 맞지 않습니다.' });
-        }
-        
         const hashedPassword = await bcrypt.hash(pw, 10);
 
         const existingUser = await prisma.user.findFirst({
@@ -56,6 +47,36 @@ router.post('/signup', async (req, res) => {
 
     } catch (error) {
         console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.post('/login', async (req, res) => {
+    const { userID, password } = req.body;
+
+    try {
+        // 사용자 확인
+        const user = await prisma.user.findFirst({
+            where: {
+                userID: userID,
+            },
+        });
+
+        if (!user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
+
+        // 비밀번호 일치 확인
+        const passwordMatch = await bcrypt.compare(password, user.encryptedPW);
+
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
+
+        // 로그인 성공
+        res.status(200).json({ message: 'Login successful', user: user });
+    } catch (error) {
+        console.error('Error logging in:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
