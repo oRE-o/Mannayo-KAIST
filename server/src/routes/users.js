@@ -73,12 +73,28 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-        // 로그인 성공
-        res.status(200).json({ message: 'Login successful', user: user });
+
+        req.session.user = {
+            UID : user.UID,
+            userName: user.name,
+            userID: user.userID
+        }
+
+        req.session.save((err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to save session' });
+            }
+
+            console.log('세션 생성됨', req.session.user.UID, req.session.id, `${req.session.userName}`);
+            return res.status(200).json({ message: 'Login successful', user: user });
+            
+        });
+
     } catch (error) {
         console.error('Error logging in:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        return res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 module.exports = router;

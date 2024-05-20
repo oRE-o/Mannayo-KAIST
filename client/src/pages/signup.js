@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./css/signup.css"
@@ -7,13 +7,28 @@ import { APIURL } from "../tools/api";
 import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const checkAuthStatus = async () => {
+            try {
+                const response = await axios.get(APIURL + '/status');
+                if (response.data.isAuthenticated) {
+                    navigate("/dashboard"); // 이미 로그인 되어 있다면 대시보드로 리다이렉트
+                }
+            } catch (error) {
+                console.error('Failed to check auth status:', error);
+            }
+        };
+    
+        checkAuthStatus();
+    }, [navigate]);
+
     const [ ID, setID ] = React.useState();
     const [ PW, setPW ] = React.useState();
     const [ PWcheck, setPWcheck ] = React.useState();
     const [ stuNum, setStuNum ] = React.useState();
     const [ name, setName ] = React.useState();
 
-    const navigate = useNavigate();
 
     const isAlphaNumeric = (input) => {
         return /^[a-zA-Z0-9]+$/.test(input);
@@ -34,8 +49,12 @@ const SignupPage = () => {
             setPWcheck('');
             return;
         }
-        else if (!isAlphaNumeric(ID) || ID.length > 20) {
-            window.alert('ID는 알파벳, 영어로만 이루어져야하며, 20자 이내로 작성해주세요.');
+        else if (!isAlphaNumeric(ID) || ID.length > 20 || ID.length < 4) {
+            window.alert('ID는 알파벳, 영어로만 이루어져야하며, 4자 이상 20자 이내로 작성해주세요.');
+            return;
+        }
+        else if (!isAlphaNumeric(PW) || PW.length > 35 || ID.length < 4) {
+            window.alert('PW는 알파벳, 영어로만 이루어져야하며, 4자 이상 35자 이내로 작성해주세요.');
             return;
         }
         else {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./css/login.css";
@@ -6,12 +6,30 @@ import axios from "axios";
 import { APIURL } from "../tools/api";
 import { useNavigate } from "react-router-dom";
 
+axios.defaults.withCredentials = true;
+
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+   
+    useEffect(() => {
+        const checkAuthStatus = async () => {
+            try {
+                const response = await axios.get(APIURL + '/status' , { withCredentials: true });
+                if (response.data.isAuthenticated) {
+                    navigate("/dashboard"); // 이미 로그인 되어 있다면 대시보드로 리다이렉트
+                }
+            } catch (error) {
+                console.error('Failed to check auth status:', error);
+            }
+        };
+        checkAuthStatus();
+        console.log('로그인인증했음');
+    }, [navigate]);
     
+
     const [ ID, setID ] = React.useState();
     const [ PW, setPW ] = React.useState();
-    const navigate = useNavigate();
 
 
     const loginUser = async () => {
