@@ -34,24 +34,46 @@ const NewMeeting = () => {
     const [ content, setContent ] = React.useState();
     
     const newMeetingCreate = async () => {
-        // if (!ID || !PW) {
-        //     window.alert('아이디, 비밀번호를 모두 입력해주세요.');
-        // }
+        if (!meetingName || !startTime || !endTime || !location || !content) {
+            return window.alert('입력되지 않은 곳이 있어요! 모두 입력해주세요.');
+        }
 
-        // try {
-        //     await axios.post(APIURL+'/users/login', { userID: ID, password: PW });
-        //     console.log('Login successful:');
-        //     // 로그인 성공 시 다음 동작 수행 (예: 리다이렉트)
-        //     navigate("/dashboard");
-        //   } catch (err) {
-        //     console.error('Error logging in:');
-        //     if (err.response.status === 401) {
-        //         window.alert('아이디나 비밀번호가 다릅니다.');
-        //       } else {
-        //         window.alert('오류가 발생했습니다.');
-        //         console.log(err.response);
-        //     }
-        //   }
+        const now = new Date();
+        const start = new Date(startTime);
+        const end = new Date(endTime);
+        const oneYearFromNow = new Date();
+        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+
+        if (start < now) {
+            return window.alert('시작 시간이 현재 시간보다 빠릅니다.');
+        }
+
+        if (end < start) {
+            return window.alert('종료 시간이 시작 시간보다 빠릅니다.');
+        }
+
+        if (start > oneYearFromNow || end > oneYearFromNow) {
+            return window.alert('시작 시간과 종료 시간은 현재로부터 1년 이내의 시간이어야 합니다.');
+        }
+
+
+        try {
+            await axios.post(APIURL+'/meeting/new', { meetingName, startTime, endTime, location, content }, { withCredentials: true });
+            window.alert('성공적으로 만남이 생성되었어요!');
+            navigate("/dashboard");
+
+          } catch (err) {
+            console.error('Error creating meeting:', err);
+            if (err.response.status === 401) {
+                window.alert('유저 인증 오류가 발생했습니다. 재 로그인 후 진행해주세요.');
+            } else if (err.response.status === 400) {
+                window.alert('이미 같은 이름의 만남이 존재합니다. 이름을 변경해주세요.');
+            } else {
+                window.alert('오류가 발생했습니다.');
+                console.log(err.response);
+            }
+          }
+          return;
     };
 
     return (
@@ -102,7 +124,7 @@ const NewMeeting = () => {
                         <textarea className="meeting-input-large" type="text" placeholder="추가적으로 만남에 어울리는 사람을 적거나,&#13;&#10;구체적인 만남의 내용 등을 적어주세요!" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
                     </div>
 
-                    <input type="submit" value="출발" className="meeting-submit" onClick={(e) => {}}></input>
+                    <input type="submit" value="출발" className="meeting-submit" onClick={(e) => {newMeetingCreate()}}></input>
                 </div>
 
 

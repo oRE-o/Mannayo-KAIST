@@ -2,10 +2,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import MeetingCard from "../components/MeetingCard";
 import Searchbar from "../components/Searchbar";
-import { useNavigate } from "react-router-dom";
 
 const FindPage = () => {
-    const navigate = useNavigate();
 
     return (
         <>

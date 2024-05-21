@@ -8,6 +8,7 @@ const FileStore = require("session-file-store")(expressSession);
 require('dotenv').config();
 
 const usersRouter = require('./routes/users.js');
+const meetingRouter = require('./routes/meeting.js');
 
 const app = express();
 const port = process.env.PORT;
@@ -42,6 +43,8 @@ app.use(
   );
   
 app.use('/users', usersRouter);
+app.use('/meeting', meetingRouter);
+
 app.use('/static', express.static(path.join(__dirname,'public')));
 
 app.get('/status', async (req, res) => {
