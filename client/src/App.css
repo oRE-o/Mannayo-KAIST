@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    background-color: rgb(240, 243, 247);
+    background-color: #f0f3f7;
 }
 .space-15px{
     width: auto;
@@ -55,7 +55,32 @@ body {
 .small-title {
     font-family: 'Montserrat', 'Pretendard', sans-serif;
     font-size: 14px;
-    font-weight: 4s00;
+    font-weight: 400;
     letter-spacing: 5px;
     margin-bottom: 7px;
 }
+
+.new-meeting {
+    text-decoration: none;
+    margin-left: auto;
+    margin-top: auto;;
+    margin-right: 30px;
+    height: fit-content;
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    padding: 16px 20px;
+    border-radius: 15px;
+    border: 0;
+    background-color: #3a79cd;
+    color: #edf4ff;
+    box-shadow:  10px 10px 20px #c5cace4e;
+}
+
+
+.title-button-wrapper {
+    width: 100%;
+    display: flex;
+}
+

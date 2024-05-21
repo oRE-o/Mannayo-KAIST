@@ -1,0 +1,59 @@
+.meeting-ex {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+.meeting-input {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 14px;
+    width: 30%;
+    height: 40px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    margin: 10px 15px;
+    border-radius: 6px;
+    border: 0;
+    box-shadow:  10px 10px 20px #c5cace4e;
+    background-color: #F8F8F8;
+}
+
+.meeting-input-large {
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    font-size: 14px;
+    width: 60%;
+    height: 300px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    margin: 10px 15px;
+    border-radius: 6px;
+    border: 0;
+    box-shadow:  10px 10px 20px #c5cace4e;
+    text-align: left;
+    background-color: #F8F8F8;
+}
+
+.meeting-submit {
+    margin: 10px 15px;
+    font-size: 16px;
+    width: 20%;
+    font-family: 'Montserrat', 'Pretendard', sans-serif;
+    background-color: #c7e2ff;
+    font-weight: 600;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

@@ -7,6 +7,7 @@ import LoginPage from './pages/login.js';
 import PageNotFound from './pages/notfound.js';
 import ProfilePage from './pages/profile.js';
 import SignupPage from './pages/signup.js';
+import NewMeetingPage from './pages/newmeeting.js';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/login" element={ <LoginPage/> }/>
           <Route path="/profile" element={ <ProfilePage/> }/>
           <Route path="/signup" element={ <SignupPage/> }/>
+          <Route path="/newMeeting" element={ <NewMeetingPage/> }/>
           <Route path="*" element={ <PageNotFound/> }/>
       </Routes>
     </BrowserRouter>
