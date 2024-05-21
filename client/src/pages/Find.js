@@ -1,10 +1,27 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import MeetingCard from "../components/MeetingCard";
-import Searchbar from "../components/Searchbar";
+import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import MeetingCard from '../components/MeetingCard';
+import Searchbar from '../components/Searchbar';
+import axios from 'axios';
+import { APIURL } from '../tools/api';
 
 const FindPage = () => {
+    const [meetings, setMeetings] = useState([]);
 
+    useEffect(() => {
+        const fetchMeetings = async () => {
+            try {
+                const response = await axios.get(APIURL + '/meeting/get', { withCredentials: true });
+                setMeetings(response.data);
+            } catch (error) {
+                console.error('Failed to fetch meetings:', error);
+            }
+        };
+        
+        fetchMeetings();
+    }, []);
+    
     return (
         <>
             <Header/>
@@ -23,7 +40,15 @@ const FindPage = () => {
                 <div className='space-50px'></div>
                     
                 <div className="list-wrapper">
-                    <MeetingCard/>
+                    {meetings.map(meeting => (
+                        <MeetingCard
+                            meetingName={meeting.meetingName}
+                            startTime={meeting.startTime}
+                            location={meeting.location}
+                            host={meeting.host}
+                            members={meeting.members}
+                        />
+                    ))}
                 </div>
             </div>
             <Footer/>

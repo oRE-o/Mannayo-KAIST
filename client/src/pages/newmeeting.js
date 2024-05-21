@@ -60,7 +60,7 @@ const NewMeeting = () => {
         try {
             await axios.post(APIURL+'/meeting/new', { meetingName, startTime, endTime, location, content }, { withCredentials: true });
             window.alert('성공적으로 만남이 생성되었어요!');
-            navigate("/dashboard");
+            navigate("/find");
 
           } catch (err) {
             console.error('Error creating meeting:', err);

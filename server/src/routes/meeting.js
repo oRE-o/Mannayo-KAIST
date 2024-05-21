@@ -3,6 +3,14 @@ const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
 const prisma = new PrismaClient();
 
+const getUserNameByUID = async (uid) => {
+    const user = await prisma.user.findUnique({
+        where: { UID: uid },
+        select: { name: true }
+    });
+    return user ? user.name : null;
+};
+
 router.post('/new', async (req, res) => {
     const { meetingName, startTime, endTime, location, content } = req.body;
     const UID = req.session.user.UID; // Assuming user UID is stored in session
@@ -46,5 +54,29 @@ router.post('/new', async (req, res) => {
     }
 });
 
+
+
+router.get('/get', async (req, res) => {
+    try {
+        const meetings = await prisma.meeting.findMany();
+        const processedMeetings = await Promise.all(meetings.map(async (meeting) => {
+            const hostName = await getUserNameByUID(meeting.hostUID);
+            const memberUIDs = JSON.parse(meeting.membersUID || '[]');
+            const memberNames = await Promise.all(memberUIDs.map(uid => getUserNameByUID(uid)));
+
+            return {
+                meetingName: meeting.meetingName,
+                startTime: meeting.startTime,
+                location: meeting.location,
+                host: hostName,
+                members: memberNames
+            };
+        }));
+        res.json(processedMeetings);
+    } catch (error) {
+        console.error('Failed to fetch meetings:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 module.exports = router;

@@ -12,7 +12,7 @@ const MeetingCard = ({ meetingName, startTime, location, host, members }) => {
         if (members.length > 2) {
             return `${members.slice(0, 2).join(', ')} 외 ${members.length - 2}명`;
         }
-        return `${members.join(', ')}, ${members.length} 명이 함께함`;
+        return `${members.join(', ')}, ${members.length}명`;
     };
 
     return (
@@ -23,7 +23,7 @@ const MeetingCard = ({ meetingName, startTime, location, host, members }) => {
             <div className="meeting-location"><span className="bold">{location}</span> 에서</div>
             <div className="space-15px"></div>
             <div className="meeting-admin"><span className="bold">{host}</span>님이 개설함</div>
-            <div className="meeting-member">{renderMembers(members)}함께함</div>
+            <div className="meeting-member">{renderMembers(members)}이 함께함</div>
         </div>
     );
 }
