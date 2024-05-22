@@ -25,7 +25,6 @@ const Dashboard = () => {
             }
         };
         checkAuthStatus();
-        console.log('로그인인증했음');
     }, [navigate]);
 
     useEffect(() => {

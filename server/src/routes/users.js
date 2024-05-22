@@ -118,4 +118,19 @@ router.get('/get', async (req, res) => {
     }
 });
 
+router.get('/logout', async (req, res) => {
+    if (req.session) {
+        // 세션 삭제
+        req.session.destroy(err => {
+            if (err) {
+                return res.status(500).json({ message: 'Failed to log out' });
+            }
+            res.clearCookie('connect.sid');
+            res.status(200).json({ message: 'Logged out successfully' });
+        });
+    } else {
+        res.status(200).json({ message: 'No active session' });
+    }
+});
+
 module.exports = router;

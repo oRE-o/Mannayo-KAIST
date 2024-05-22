@@ -11,7 +11,7 @@ const Header = () => {
     const navigate = useNavigate();
     const [ isAuth, setIsAuth ] = useState();
     const [username, setUsername] = useState();
-
+    
     useEffect(() => {
         const checkAuthStatus = async () => {
             try {
@@ -32,7 +32,6 @@ const Header = () => {
             }
         };
         checkAuthStatus();
-        console.log('로그인인증했음');
     }, [navigate]);
 
     return (
@@ -45,7 +44,16 @@ const Header = () => {
                 {isAuth ? (
                     <>
                         <li className="nav-item" onClick={ () => {window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")} }>{username}님으로 로그인됨</li>
-                        <li className="nav-item" onClick={ () => navigate("/logout") }>로그아웃</li>
+                        <li className="nav-item" onClick={ async () => { 
+                            try {
+                                navigate('/')
+                                await axios.get(APIURL + '/users/logout' , { withCredentials: true });
+                                window.location.reload();                                
+                            } catch (error){
+                                console.error('failed to logout', error);
+                                return;
+                            }  
+                         } }>로그아웃</li>
                     </>
                 ) : (
                     <li className="nav-item" onClick={ () => navigate("/login") }>로그인</li>
