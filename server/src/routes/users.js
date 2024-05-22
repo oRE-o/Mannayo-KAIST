@@ -73,7 +73,6 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-
         req.session.user = {
             UID : user.UID,
             userName: user.name,
@@ -96,5 +95,27 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+router.get('/get', async (req, res) => {
+    try {
+        const userUID = req.session.user.UID;
+        // 사용자 확인
+        const user = await prisma.user.findUnique({
+            where: {
+                UID: userUID
+            },
+        });
+
+        if (!user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
+
+        return res.status(200).json({ message: '이름 반환 성공', username: user.name });
+
+    } catch (error) {
+        console.error('이름 fetch중 오류 발생', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 module.exports = router;

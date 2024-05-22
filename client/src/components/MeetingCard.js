@@ -12,7 +12,7 @@ const MeetingCard = ({ meetingName, startTime, location, host, members }) => {
         if (members.length > 2) {
             return `${members.slice(0, 2).join(', ')} 외 ${members.length - 2}명`;
         }
-        return `${members.join(', ')}, ${members.length}명`;
+        return `${members.join(', ')}님, 총 ${members.length}명`;
     };
 
     return (

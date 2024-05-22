@@ -56,9 +56,41 @@ router.post('/new', async (req, res) => {
 
 
 
-router.get('/get', async (req, res) => {
+router.post('/get', async (req, res) => {
+    const { userSearch, startTime, endTime } = req.body;
+
     try {
-        const meetings = await prisma.meeting.findMany();
+        let meetings = [];
+        
+        console.log(startTime, endTime);
+        // 사용자 참여 중인 모임 검색
+        if (userSearch) {
+            const userUID = req.session.user.UID;
+            meetings = await prisma.meeting.findMany({
+                where: {
+                    membersUID: {
+                        contains: userUID
+                    }
+                }
+            });
+        } 
+        // 시간 간격 내의 모임 검색
+        else if (startTime && endTime) {
+            console.log(startTime, endTime);
+            meetings = await prisma.meeting.findMany({
+                where: {
+                    startTime: {
+                        gte: new Date(startTime),
+                        lte: new Date(endTime)
+                    }
+                }
+            });
+        } 
+        // 모든 모임 검색
+        else {
+            meetings = await prisma.meeting.findMany();
+        }
+
         const processedMeetings = await Promise.all(meetings.map(async (meeting) => {
             const hostName = await getUserNameByUID(meeting.hostUID);
             const memberUIDs = JSON.parse(meeting.membersUID || '[]');
