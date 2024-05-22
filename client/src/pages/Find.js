@@ -15,7 +15,6 @@ const FindPage = () => {
     useEffect(() => {
         const fetchMeetings = async () => {
             try {
-                let query = '';
                 if (startTime && endTime) {
                     setIsTimeMode(true);
                     const response = await axios.post(APIURL + '/meeting/get', {startTime: startTime, endTime: endTime},{ withCredentials: true });
@@ -56,7 +55,7 @@ const FindPage = () => {
                     {isTimeMode ? (
                         <>
                             <div className="part-title">| 현재 참여 가능 시간으로 검색중입니다.</div>
-                            <div className="part-title">| <a className='part-title-highlight' onClick={() => {setStartTime(); setEndTime();}}>검색 취소하기</a></div>
+                            <div className="part-title">| <div className='part-title-highlight' onClick={() => {setStartTime(); setEndTime();}}>검색 취소하기</div></div>
                         </>
                     ) : (
                         <div className="part-title">| 참여 가능 시간으로 검색해보세요.</div>

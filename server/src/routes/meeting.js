@@ -54,7 +54,38 @@ router.post('/new', async (req, res) => {
     }
 });
 
+router.post('/getByID', async (req, res) => {
+    const { meetingID } = req.body;
+    try {
+        const meeting = await prisma.meeting.findUnique({
+            where: {
+                meetingID: meetingID
+            }
+        });
+        
+        if (!meeting) {
+            return res.status(404).json({ error: 'Meeting not found' });
+        }
 
+        const hostName = await getUserNameByUID(meeting.hostUID);
+        const memberUIDs = JSON.parse(meeting.membersUID || '[]');
+        const memberNames = await Promise.all(memberUIDs.map(uid => getUserNameByUID(uid)));
+
+        res.json({
+            meetingName: meeting.meetingName,
+            startTime: meeting.startTime,
+            endTime: meeting.endTime,  // Include endTime
+            location: meeting.location,
+            host: hostName,
+            members: memberNames,
+            content: meeting.content,
+        });
+
+    } catch (err) {
+        console.error('Failed to fetch meetings:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    };
+});
 
 router.post('/get', async (req, res) => {
     const { userSearch, startTime, endTime } = req.body;
