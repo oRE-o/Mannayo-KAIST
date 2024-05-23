@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import './reset.css';
 import HomePage from './pages/home.js';
-import Dashboard from './pages/Dashboard.js';
+import Dashboard from './pages/dashboard.js';
 import FindPage from './pages/find.js';
 import LoginPage from './pages/login.js';
 import PageNotFound from './pages/notfound.js';
