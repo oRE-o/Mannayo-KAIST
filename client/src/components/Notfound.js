@@ -1,8 +1,8 @@
 import React from "react";
-import bocchi from "./bocchi.mp4";
+import { APIURL } from "../tools/api";
 const NotFoundVideo = () => {
     return (
-        <video src={bocchi} autoPlay muted loop> </video>
+        <video src={APIURL+'/static/bocchi.mp4'} autoPlay muted loop> </video>
 
     );
 }

@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import profileImgTemp from "./bocchi.jpg"
+import { APIURL } from "../tools/api";
 import "./css/profile.css"
 
 const ProfilePage = () => {
@@ -13,7 +13,7 @@ const ProfilePage = () => {
                 <div className="greetings">| n' 넙죽이</div>
                 <div className='space-50px'></div>
                 <div className="profile-wrapper">
-                    <img className="profile-img"src={profileImgTemp} alt="a"></img>
+                    <img className="profile-img"src={APIURL+"static/bocchi.jpg"} alt="a"></img>
                     <div className="profile-text-wrapper">
                         <div className="profile-text"><span className="bold">이름 | </span><span className="name">김넙죽</span></div>
                         <div className="profile-text"><span className="bold">학번 및 소속 | </span><span className="studentInfo">n' 영어영문학과</span></div>

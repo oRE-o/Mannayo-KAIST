@@ -92,8 +92,8 @@ router.post('/get', async (req, res) => {
 
     try {
         let meetings = [];
-        
-        console.log(startTime, endTime);
+
+        console.log(startTime, endTime, userSearch);
         // 사용자 참여 중인 모임 검색
         if (userSearch) {
             const userUID = req.session.user.UID;
