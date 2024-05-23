@@ -71,6 +71,7 @@ const FindPage = () => {
                 <div className="list-wrapper">
                     {meetings.map(meeting => (
                         <MeetingCard
+                            meetingID={meeting.meetingID}
                             meetingName={meeting.meetingName}
                             startTime={meeting.startTime}
                             location={meeting.location}
