@@ -1,7 +1,7 @@
 import './App.css';
 import './reset.css';
 import HomePage from './pages/home.js';
-import Dashboard from './pages/dashboard.js';
+import Dashboard from './pages/Dashboard.js';
 import FindPage from './pages/find.js';
 import LoginPage from './pages/login.js';
 import PageNotFound from './pages/notfound.js';
